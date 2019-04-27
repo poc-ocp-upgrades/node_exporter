@@ -30,14 +30,20 @@ type meminfoNumaCollector struct{ metricDescs map[string]*prometheus.Desc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("meminfo_numa", defaultDisabled, NewMeminfoNumaCollector)
 }
 func NewMeminfoNumaCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &meminfoNumaCollector{metricDescs: map[string]*prometheus.Desc{}}, nil
 }
 func (c *meminfoNumaCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	metrics, err := getMemInfoNuma()
@@ -55,6 +61,8 @@ func (c *meminfoNumaCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func getMemInfoNuma() ([]meminfoMetric, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -95,6 +103,8 @@ func getMemInfoNuma() ([]meminfoMetric, error) {
 func parseMemInfoNuma(r io.Reader) ([]meminfoMetric, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		memInfo	[]meminfoMetric
 		scanner	= bufio.NewScanner(r)
@@ -124,6 +134,8 @@ func parseMemInfoNuma(r io.Reader) ([]meminfoMetric, error) {
 	return memInfo, scanner.Err()
 }
 func parseMemInfoNumaStat(r io.Reader, nodeNumber string) ([]meminfoMetric, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

@@ -19,6 +19,8 @@ type drbdNumericalMetric struct {
 func newDRBDNumericalMetric(name string, desc string, valueType prometheus.ValueType, multiplier float64) drbdNumericalMetric {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return drbdNumericalMetric{desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, "drbd", name), desc, []string{"device"}, nil), valueType: valueType, multiplier: multiplier}
 }
 
@@ -30,12 +32,16 @@ type drbdStringPairMetric struct {
 func (metric *drbdStringPairMetric) isOkay(value string) float64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if value == metric.valueOkay {
 		return 1
 	}
 	return 0
 }
 func newDRBDStringPairMetric(name string, desc string, valueOkay string) drbdStringPairMetric {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return drbdStringPairMetric{desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, "drbd", name), desc, []string{"device", "node"}, nil), valueOkay: valueOkay}
@@ -52,14 +58,20 @@ type drbdCollector struct{}
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("drbd", defaultDisabled, newDRBDCollector)
 }
 func newDRBDCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &drbdCollector{}, nil
 }
 func (c *drbdCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	statsFile := procFilePath("drbd")

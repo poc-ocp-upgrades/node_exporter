@@ -15,9 +15,13 @@ type ksmdCollector struct{ metricDescs map[string]*prometheus.Desc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("ksmd", defaultDisabled, NewKsmdCollector)
 }
 func getCanonicalMetricName(filename string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch filename {
@@ -32,6 +36,8 @@ func getCanonicalMetricName(filename string) string {
 func NewKsmdCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	subsystem := "ksmd"
 	descs := make(map[string]*prometheus.Desc)
 	for _, n := range ksmdFiles {
@@ -40,6 +46,8 @@ func NewKsmdCollector() (Collector, error) {
 	return &ksmdCollector{descs}, nil
 }
 func (c *ksmdCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, n := range ksmdFiles {

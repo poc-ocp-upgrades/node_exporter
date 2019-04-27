@@ -17,6 +17,8 @@ type nfsdCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("nfsd", defaultEnabled, NewNFSdCollector)
 }
 
@@ -27,6 +29,8 @@ const (
 func NewNFSdCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fs, err := procfs.NewFS(*procPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open procfs: %v", err)
@@ -34,6 +38,8 @@ func NewNFSdCollector() (Collector, error) {
 	return &nfsdCollector{fs: fs, requestsDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "requests_total"), "Total number NFSd Requests by method and protocol.", []string{"proto", "method"}, nil)}, nil
 }
 func (c *nfsdCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	stats, err := c.fs.NFSdServerRPCStats()
@@ -59,6 +65,8 @@ func (c *nfsdCollector) Update(ch chan<- prometheus.Metric) error {
 func (c *nfsdCollector) updateNFSdReplyCacheStats(ch chan<- prometheus.Metric, s *nfs.ReplyCache) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "reply_cache_hits_total"), "Total number of NFSd Reply Cache hits (client lost server response).", nil, nil), prometheus.CounterValue, float64(s.Hits))
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "reply_cache_misses_total"), "Total number of NFSd Reply Cache an operation that requires caching (idempotent).", nil, nil), prometheus.CounterValue, float64(s.Misses))
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "reply_cache_nocache_total"), "Total number of NFSd Reply Cache non-idempotent operations (rename/delete/…).", nil, nil), prometheus.CounterValue, float64(s.NoCache))
@@ -66,9 +74,13 @@ func (c *nfsdCollector) updateNFSdReplyCacheStats(ch chan<- prometheus.Metric, s
 func (c *nfsdCollector) updateNFSdFileHandlesStats(ch chan<- prometheus.Metric, s *nfs.FileHandles) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "file_handles_stale_total"), "Total number of NFSd stale file handles", nil, nil), prometheus.CounterValue, float64(s.Stale))
 }
 func (c *nfsdCollector) updateNFSdInputOutputStats(ch chan<- prometheus.Metric, s *nfs.InputOutput) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "disk_bytes_read_total"), "Total NFSd bytes read.", nil, nil), prometheus.CounterValue, float64(s.Read))
@@ -77,15 +89,21 @@ func (c *nfsdCollector) updateNFSdInputOutputStats(ch chan<- prometheus.Metric, 
 func (c *nfsdCollector) updateNFSdThreadsStats(ch chan<- prometheus.Metric, s *nfs.Threads) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "server_threads"), "Total number of NFSd kernel threads that are running.", nil, nil), prometheus.GaugeValue, float64(s.Threads))
 }
 func (c *nfsdCollector) updateNFSdReadAheadCacheStats(ch chan<- prometheus.Metric, s *nfs.ReadAheadCache) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "read_ahead_cache_size_blocks"), "How large the read ahead cache is in blocks.", nil, nil), prometheus.GaugeValue, float64(s.CacheSize))
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "read_ahead_cache_not_found_total"), "Total number of NFSd read ahead cache not found.", nil, nil), prometheus.CounterValue, float64(s.NotFound))
 }
 func (c *nfsdCollector) updateNFSdNetworkStats(ch chan<- prometheus.Metric, s *nfs.Network) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	packetDesc := prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "packets_total"), "Total NFSd network packets (sent+received) by protocol type.", []string{"proto"}, nil)
@@ -96,6 +114,8 @@ func (c *nfsdCollector) updateNFSdNetworkStats(ch chan<- prometheus.Metric, s *n
 func (c *nfsdCollector) updateNFSdServerRPCStats(ch chan<- prometheus.Metric, s *nfs.ServerRPC) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	badRPCDesc := prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "rpc_errors_total"), "Total number of NFSd RPC errors by error type.", []string{"error"}, nil)
 	ch <- prometheus.MustNewConstMetric(badRPCDesc, prometheus.CounterValue, float64(s.BadFmt), "fmt")
 	ch <- prometheus.MustNewConstMetric(badRPCDesc, prometheus.CounterValue, float64(s.BadAuth), "auth")
@@ -103,6 +123,8 @@ func (c *nfsdCollector) updateNFSdServerRPCStats(ch chan<- prometheus.Metric, s 
 	ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, nfsdSubsystem, "server_rpcs_total"), "Total number of NFSd RPCs.", nil, nil), prometheus.CounterValue, float64(s.RPCCount))
 }
 func (c *nfsdCollector) updateNFSdRequestsv2Stats(ch chan<- prometheus.Metric, s *nfs.V2Stats) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const proto = "2"
@@ -125,6 +147,8 @@ func (c *nfsdCollector) updateNFSdRequestsv2Stats(ch chan<- prometheus.Metric, s
 	ch <- prometheus.MustNewConstMetric(c.requestsDesc, prometheus.CounterValue, float64(s.FsStat), proto, "FsStat")
 }
 func (c *nfsdCollector) updateNFSdRequestsv3Stats(ch chan<- prometheus.Metric, s *nfs.V3Stats) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const proto = "3"
@@ -151,6 +175,8 @@ func (c *nfsdCollector) updateNFSdRequestsv3Stats(ch chan<- prometheus.Metric, s
 	ch <- prometheus.MustNewConstMetric(c.requestsDesc, prometheus.CounterValue, float64(s.Commit), proto, "Commit")
 }
 func (c *nfsdCollector) updateNFSdRequestsv4Stats(ch chan<- prometheus.Metric, s *nfs.V4Ops) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const proto = "4"

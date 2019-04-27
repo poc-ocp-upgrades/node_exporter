@@ -9,6 +9,8 @@ import (
 func TestDefaultProcPath(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, err := kingpin.CommandLine.Parse([]string{"--path.procfs", procfs.DefaultMountPoint}); err != nil {
 		t.Fatal(err)
 	}
@@ -20,6 +22,8 @@ func TestDefaultProcPath(t *testing.T) {
 	}
 }
 func TestCustomProcPath(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if _, err := kingpin.CommandLine.Parse([]string{"--path.procfs", "./../some/./place/"}); err != nil {
@@ -35,6 +39,8 @@ func TestCustomProcPath(t *testing.T) {
 func TestDefaultSysPath(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, err := kingpin.CommandLine.Parse([]string{"--path.sysfs", "/sys"}); err != nil {
 		t.Fatal(err)
 	}
@@ -46,6 +52,8 @@ func TestDefaultSysPath(t *testing.T) {
 	}
 }
 func TestCustomSysPath(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if _, err := kingpin.CommandLine.Parse([]string{"--path.sysfs", "./../some/./place/"}); err != nil {

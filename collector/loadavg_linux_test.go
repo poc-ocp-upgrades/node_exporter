@@ -5,6 +5,8 @@ import "testing"
 func TestLoad(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	want := []float64{0.21, 0.37, 0.39}
 	loads, err := parseLoad("0.21 0.37 0.39 1/719 19737")
 	if err != nil {

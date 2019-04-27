@@ -30,6 +30,8 @@ type bsdSysctl struct {
 func (b bsdSysctl) Value() (float64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var tmp32 uint32
 	var tmp64 uint64
 	var tmpf64 float64
@@ -57,6 +59,8 @@ func (b bsdSysctl) Value() (float64, error) {
 func (b bsdSysctl) getStructTimeval() (float64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	raw, err := unix.SysctlRaw(b.mib)
 	if err != nil {
 		return 0, err
@@ -68,6 +72,8 @@ func (b bsdSysctl) getStructTimeval() (float64, error) {
 	return (float64(tv.Sec) + (float64(tv.Usec) / float64(1000*1000))), nil
 }
 func (b bsdSysctl) getCLong() (float64, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	raw, err := unix.SysctlRaw(b.mib)

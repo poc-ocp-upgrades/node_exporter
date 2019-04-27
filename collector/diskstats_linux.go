@@ -32,6 +32,8 @@ type typedFactorDesc struct {
 func (d *typedFactorDesc) mustNewConstMetric(value float64, labels ...string) prometheus.Metric {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if d.factor != 0 {
 		value *= d.factor
 	}
@@ -46,15 +48,21 @@ type diskstatsCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("diskstats", defaultEnabled, NewDiskstatsCollector)
 }
 func NewDiskstatsCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var diskLabelNames = []string{"device"}
 	return &diskstatsCollector{ignoredDevicesPattern: regexp.MustCompile(*ignoredDevices), descs: []typedFactorDesc{{desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "reads_completed_total"), "The total number of reads completed successfully.", diskLabelNames, nil), valueType: prometheus.CounterValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "reads_merged_total"), "The total number of reads merged.", diskLabelNames, nil), valueType: prometheus.CounterValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "read_bytes_total"), "The total number of bytes read successfully.", diskLabelNames, nil), valueType: prometheus.CounterValue, factor: diskSectorSize}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "read_time_seconds_total"), "The total number of seconds spent by all reads.", diskLabelNames, nil), valueType: prometheus.CounterValue, factor: .001}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "writes_completed_total"), "The total number of writes completed successfully.", diskLabelNames, nil), valueType: prometheus.CounterValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "writes_merged_total"), "The number of writes merged.", diskLabelNames, nil), valueType: prometheus.CounterValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "written_bytes_total"), "The total number of bytes written successfully.", diskLabelNames, nil), valueType: prometheus.CounterValue, factor: diskSectorSize}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "write_time_seconds_total"), "This is the total number of seconds spent by all writes.", diskLabelNames, nil), valueType: prometheus.CounterValue, factor: .001}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "io_now"), "The number of I/Os currently in progress.", diskLabelNames, nil), valueType: prometheus.GaugeValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "io_time_seconds_total"), "Total seconds spent doing I/Os.", diskLabelNames, nil), valueType: prometheus.CounterValue, factor: .001}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "io_time_weighted_seconds_total"), "The weighted # of seconds spent doing I/Os.", diskLabelNames, nil), valueType: prometheus.CounterValue, factor: .001}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "discards_completed_total"), "The total number of discards completed successfully.", diskLabelNames, nil), valueType: prometheus.CounterValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "discards_merged_total"), "The total number of discards merged.", diskLabelNames, nil), valueType: prometheus.CounterValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "discarded_sectors_total"), "The total number of sectors discarded successfully.", diskLabelNames, nil), valueType: prometheus.CounterValue}, {desc: prometheus.NewDesc(prometheus.BuildFQName(namespace, diskSubsystem, "discard_time_seconds_total"), "This is the total number of seconds spent by all discards.", diskLabelNames, nil), valueType: prometheus.CounterValue, factor: .001}}}, nil
 }
 func (c *diskstatsCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	diskStats, err := getDiskStats()
@@ -82,6 +90,8 @@ func (c *diskstatsCollector) Update(ch chan<- prometheus.Metric) error {
 func getDiskStats() (map[string][]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath(diskstatsFilename))
 	if err != nil {
 		return nil, err
@@ -90,6 +100,8 @@ func getDiskStats() (map[string][]string, error) {
 	return parseDiskStats(file)
 }
 func parseDiskStats(r io.Reader) (map[string][]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

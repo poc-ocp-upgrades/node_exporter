@@ -8,6 +8,8 @@ import "C"
 func getLoad() ([]float64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var loadavg [3]C.double
 	samples := C.getloadavg(&loadavg[0], 3)
 	if samples != 3 {

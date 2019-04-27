@@ -18,6 +18,8 @@ var (
 func getNetDevStats(ignore *regexp.Regexp) (map[string]map[string]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath("net/dev"))
 	if err != nil {
 		return nil, err
@@ -26,6 +28,8 @@ func getNetDevStats(ignore *regexp.Regexp) (map[string]map[string]string, error)
 	return parseNetDevStats(file, ignore)
 }
 func parseNetDevStats(r io.Reader, ignore *regexp.Regexp) (map[string]map[string]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scanner := bufio.NewScanner(r)

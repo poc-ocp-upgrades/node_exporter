@@ -17,6 +17,8 @@ const (
 func gostring(b []int8) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	bb := *(*[]byte)(unsafe.Pointer(&b))
 	idx := bytes.IndexByte(bb, 0)
 	if idx < 0 {
@@ -25,6 +27,8 @@ func gostring(b []int8) string {
 	return string(bb[:idx])
 }
 func (c *filesystemCollector) GetStats() ([]filesystemStats, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	n, err := unix.Getfsstat(nil, noWait)

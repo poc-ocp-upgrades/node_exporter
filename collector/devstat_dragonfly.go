@@ -20,14 +20,20 @@ type devstatCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("devstat", defaultDisabled, NewDevstatCollector)
 }
 func NewDevstatCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &devstatCollector{bytesDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "bytes_total"), "The total number of bytes transferred for reads and writes on the device.", []string{"device"}, nil), transfersDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "transfers_total"), "The total number of transactions completed.", []string{"device"}, nil), blocksDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "blocks_total"), "The total number of bytes given in terms of the devices blocksize.", []string{"device"}, nil)}, nil
 }
 func (c *devstatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	count := C._get_ndevs()

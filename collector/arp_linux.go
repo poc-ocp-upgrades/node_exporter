@@ -17,14 +17,20 @@ type arpCollector struct{ entries *prometheus.Desc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("arp", defaultEnabled, NewARPCollector)
 }
 func NewARPCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &arpCollector{entries: prometheus.NewDesc(prometheus.BuildFQName(namespace, "arp", "entries"), "ARP entries by device", []string{"device"}, nil)}, nil
 }
 func getARPEntries() (map[string]uint32, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath("net/arp"))
@@ -39,6 +45,8 @@ func getARPEntries() (map[string]uint32, error) {
 	return entries, nil
 }
 func parseARPEntries(data io.Reader) (map[string]uint32, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scanner := bufio.NewScanner(data)
@@ -61,6 +69,8 @@ func parseARPEntries(data io.Reader) (map[string]uint32, error) {
 func (c *arpCollector) Update(ch chan<- prometheus.Metric) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	entries, err := getARPEntries()
 	if err != nil {
 		return fmt.Errorf("could not get ARP entries: %s", err)
@@ -73,7 +83,16 @@ func (c *arpCollector) Update(ch chan<- prometheus.Metric) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

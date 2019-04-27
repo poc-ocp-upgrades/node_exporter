@@ -23,6 +23,8 @@ const (
 func TestFileDescriptorLeak(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, err := os.Stat(binary); err != nil {
 		t.Skipf("node_exporter binary not available, try to run `make build` first: %s", err)
 	}
@@ -63,6 +65,8 @@ func TestFileDescriptorLeak(t *testing.T) {
 func TestHandlingOfDuplicatedMetrics(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, err := os.Stat(binary); err != nil {
 		t.Skipf("node_exporter binary not available, try to run `make build` first: %s", err)
 	}
@@ -89,6 +93,8 @@ func TestHandlingOfDuplicatedMetrics(t *testing.T) {
 func queryExporter(address string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	resp, err := http.Get(fmt.Sprintf("http://%s/metrics", address))
 	if err != nil {
 		return err
@@ -106,6 +112,8 @@ func queryExporter(address string) error {
 	return nil
 }
 func runCommandAndTests(cmd *exec.Cmd, address string, fn func(pid int) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := cmd.Start(); err != nil {

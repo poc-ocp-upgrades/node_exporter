@@ -32,9 +32,13 @@ type mdadmCollector struct{}
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("mdadm", defaultEnabled, NewMdadmCollector)
 }
 func evalStatusline(statusline string) (active, total, size int64, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	matches := statuslineRE.FindStringSubmatch(statusline)
@@ -60,6 +64,8 @@ func evalStatusline(statusline string) (active, total, size int64, err error) {
 func evalRaid0line(statusline string) (size int64, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	matches := raid0lineRE.FindStringSubmatch(statusline)
 	if len(matches) < 2 {
 		return 0, fmt.Errorf("invalid raid0 status line: %s", statusline)
@@ -73,6 +79,8 @@ func evalRaid0line(statusline string) (size int64, err error) {
 func evalUnknownPersonalitylineRE(statusline string) (size int64, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	matches := unknownPersonalityLineRE.FindStringSubmatch(statusline)
 	if len(matches) != 2+1 {
 		return 0, fmt.Errorf("invalid unknown personality status line: %s", statusline)
@@ -84,6 +92,8 @@ func evalUnknownPersonalitylineRE(statusline string) (size int64, err error) {
 	return size, nil
 }
 func evalBuildline(buildline string) (int64, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	matches := buildlineRE.FindStringSubmatch(buildline)
@@ -100,6 +110,8 @@ func evalBuildline(buildline string) (int64, error) {
 	return syncedSize, nil
 }
 func parseMdstat(mdStatusFilePath string) ([]mdStatus, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	content, err := ioutil.ReadFile(mdStatusFilePath)
@@ -170,6 +182,8 @@ func parseMdstat(mdStatusFilePath string) ([]mdStatus, error) {
 func NewMdadmCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &mdadmCollector{}, nil
 }
 
@@ -182,6 +196,8 @@ var (
 )
 
 func (c *mdadmCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	statusfile := procFilePath("mdstat")

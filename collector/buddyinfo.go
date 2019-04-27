@@ -17,15 +17,21 @@ type buddyinfoCollector struct{ desc *prometheus.Desc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("buddyinfo", defaultDisabled, NewBuddyinfoCollector)
 }
 func NewBuddyinfoCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	desc := prometheus.NewDesc(prometheus.BuildFQName(namespace, buddyInfoSubsystem, "blocks"), "Count of free blocks according to size.", []string{"node", "zone", "size"}, nil)
 	return &buddyinfoCollector{desc}, nil
 }
 func (c *buddyinfoCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs, err := procfs.NewFS(*procPath)

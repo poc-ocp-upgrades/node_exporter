@@ -19,15 +19,21 @@ type processCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("processes", defaultDisabled, NewProcessStatCollector)
 }
 func NewProcessStatCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	subsystem := "processes"
 	return &processCollector{threadAlloc: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "threads"), "Allocated threads in system", nil, nil), threadLimit: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "max_threads"), "Limit of threads in the system", nil, nil), procsState: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "state"), "Number of processes in each state.", []string{"state"}, nil), pidUsed: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pids"), "Number of PIDs", nil, nil), pidMax: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "max_processes"), "Number of max PIDs limit", nil, nil)}, nil
 }
 func (t *processCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pids, states, threads, err := getAllocatedThreads()
@@ -52,6 +58,8 @@ func (t *processCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func getAllocatedThreads() (int, map[string]int32, int, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs, err := procfs.NewFS(*procPath)

@@ -28,15 +28,21 @@ type textFileCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("textfile", defaultEnabled, NewTextFileCollector)
 }
 func NewTextFileCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c := &textFileCollector{path: *textFileDirectory}
 	return c, nil
 }
 func convertMetricFamily(metricFamily *dto.MetricFamily, ch chan<- prometheus.Metric) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var valType prometheus.ValueType
@@ -108,6 +114,8 @@ func convertMetricFamily(metricFamily *dto.MetricFamily, ch chan<- prometheus.Me
 func (c *textFileCollector) exportMTimes(mtimes map[string]time.Time, ch chan<- prometheus.Metric) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(mtimes) > 0 {
 		filenames := make([]string, 0, len(mtimes))
 		for filename := range mtimes {
@@ -124,6 +132,8 @@ func (c *textFileCollector) exportMTimes(mtimes map[string]time.Time, ch chan<- 
 	}
 }
 func (c *textFileCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	error := 0.0
@@ -173,6 +183,8 @@ func (c *textFileCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func hasTimestamps(parsedFamilies map[string]*dto.MetricFamily) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, mf := range parsedFamilies {

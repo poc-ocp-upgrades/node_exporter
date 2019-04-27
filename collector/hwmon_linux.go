@@ -25,6 +25,8 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("hwmon", defaultEnabled, NewHwMonCollector)
 }
 
@@ -33,9 +35,13 @@ type hwMonCollector struct{}
 func NewHwMonCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &hwMonCollector{}, nil
 }
 func cleanMetricName(name string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	lower := strings.ToLower(name)
@@ -44,6 +50,8 @@ func cleanMetricName(name string) string {
 	return cleaned
 }
 func addValueFile(data map[string]map[string]string, sensor string, prop string, file string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	raw, err := sysReadFile(file)
@@ -59,6 +67,8 @@ func addValueFile(data map[string]map[string]string, sensor string, prop string,
 func sysReadFile(file string) ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	f, err := os.Open(file)
 	if err != nil {
 		return nil, err
@@ -72,6 +82,8 @@ func sysReadFile(file string) ([]byte, error) {
 	return b[:n], nil
 }
 func explodeSensorFilename(filename string) (ok bool, sensorType string, sensorNum int, sensorProperty string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	matches := hwmonFilenameFormat.FindStringSubmatch(filename)
@@ -101,6 +113,8 @@ func explodeSensorFilename(filename string) (ok bool, sensorType string, sensorN
 func collectSensorData(dir string, data map[string]map[string]string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sensorFiles, dirError := ioutil.ReadDir(dir)
 	if dirError != nil {
 		return dirError
@@ -121,6 +135,8 @@ func collectSensorData(dir string, data map[string]map[string]string) error {
 	return nil
 }
 func (c *hwMonCollector) updateHwmon(ch chan<- prometheus.Metric, dir string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	hwmonName, err := c.hwmonName(dir)
@@ -267,6 +283,8 @@ func (c *hwMonCollector) updateHwmon(ch chan<- prometheus.Metric, dir string) er
 func (c *hwMonCollector) hwmonName(dir string) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	devicePath, devErr := filepath.EvalSymlinks(path.Join(dir, "device"))
 	if devErr == nil {
 		devPathPrefix, devName := path.Split(devicePath)
@@ -301,6 +319,8 @@ func (c *hwMonCollector) hwmonName(dir string) (string, error) {
 func (c *hwMonCollector) hwmonHumanReadableChipName(dir string) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sysnameRaw, nameErr := ioutil.ReadFile(path.Join(dir, "name"))
 	if nameErr != nil {
 		return "", nameErr
@@ -314,6 +334,8 @@ func (c *hwMonCollector) hwmonHumanReadableChipName(dir string) (string, error) 
 	return "", errors.New("Could not derive a human-readable chip type for " + dir)
 }
 func (c *hwMonCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	hwmonPathName := path.Join(sysFilePath("class"), "hwmon")

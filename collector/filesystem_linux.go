@@ -23,6 +23,8 @@ var stuckMountsMtx = &sync.Mutex{}
 func (c *filesystemCollector) GetStats() ([]filesystemStats, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	mps, err := mountPointDetails()
 	if err != nil {
 		return nil, err
@@ -75,6 +77,8 @@ func (c *filesystemCollector) GetStats() ([]filesystemStats, error) {
 func stuckMountWatcher(mountPoint string, success chan struct{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	select {
 	case <-success:
 	case <-time.After(mountTimeout):
@@ -89,6 +93,8 @@ func stuckMountWatcher(mountPoint string, success chan struct{}) {
 	}
 }
 func mountPointDetails() ([]filesystemLabels, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath("1/mounts"))

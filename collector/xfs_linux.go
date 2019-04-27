@@ -12,9 +12,13 @@ type xfsCollector struct{ fs sysfs.FS }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("xfs", defaultEnabled, NewXFSCollector)
 }
 func NewXFSCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs, err := sysfs.NewFS(*sysPath)
@@ -24,6 +28,8 @@ func NewXFSCollector() (Collector, error) {
 	return &xfsCollector{fs: fs}, nil
 }
 func (c *xfsCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	stats, err := c.fs.XFSStats()
@@ -36,6 +42,8 @@ func (c *xfsCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func (c *xfsCollector) updateXFSStats(ch chan<- prometheus.Metric, s *xfs.Stats) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const (

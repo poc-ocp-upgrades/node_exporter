@@ -25,15 +25,21 @@ type netStatCollector struct{ fieldPattern *regexp.Regexp }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("netstat", defaultEnabled, NewNetStatCollector)
 }
 func NewNetStatCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pattern := regexp.MustCompile(*netStatFields)
 	return &netStatCollector{fieldPattern: pattern}, nil
 }
 func (c *netStatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	netStats, err := getNetStats(procFilePath("net/netstat"))
@@ -72,6 +78,8 @@ func (c *netStatCollector) Update(ch chan<- prometheus.Metric) error {
 func getNetStats(fileName string) (map[string]map[string]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(fileName)
 	if err != nil {
 		return nil, err
@@ -80,6 +88,8 @@ func getNetStats(fileName string) (map[string]map[string]string, error) {
 	return parseNetStats(file, fileName)
 }
 func parseNetStats(r io.Reader, fileName string) (map[string]map[string]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -104,6 +114,8 @@ func parseNetStats(r io.Reader, fileName string) (map[string]map[string]string, 
 func getSNMP6Stats(fileName string) (map[string]map[string]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(fileName)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -115,6 +127,8 @@ func getSNMP6Stats(fileName string) (map[string]map[string]string, error) {
 	return parseSNMP6Stats(file)
 }
 func parseSNMP6Stats(r io.Reader) (map[string]map[string]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

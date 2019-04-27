@@ -31,9 +31,13 @@ type ntpCollector struct{ stratum, leap, rtt, offset, reftime, rootDelay, rootDi
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("ntp", defaultDisabled, NewNtpCollector)
 }
 func NewNtpCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ipaddr := net.ParseIP(*ntpServer)
@@ -49,6 +53,8 @@ func NewNtpCollector() (Collector, error) {
 	return &ntpCollector{stratum: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "stratum"), "NTPD stratum.", nil, nil), prometheus.GaugeValue}, leap: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "leap"), "NTPD leap second indicator, 2 bits.", nil, nil), prometheus.GaugeValue}, rtt: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "rtt_seconds"), "RTT to NTPD.", nil, nil), prometheus.GaugeValue}, offset: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "offset_seconds"), "ClockOffset between NTP and local clock.", nil, nil), prometheus.GaugeValue}, reftime: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "reference_timestamp_seconds"), "NTPD ReferenceTime, UNIX timestamp.", nil, nil), prometheus.GaugeValue}, rootDelay: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "root_delay_seconds"), "NTPD RootDelay.", nil, nil), prometheus.GaugeValue}, rootDispersion: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "root_dispersion_seconds"), "NTPD RootDispersion.", nil, nil), prometheus.GaugeValue}, sanity: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, ntpSubsystem, "sanity"), "NTPD sanity according to RFC5905 heuristics and configured limits.", nil, nil), prometheus.GaugeValue}}, nil
 }
 func (c *ntpCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	resp, err := ntp.QueryWithOptions(*ntpServer, ntp.QueryOptions{Version: *ntpProtocolVersion, TTL: *ntpIPTTL, Timeout: time.Second})

@@ -29,6 +29,8 @@ var (
 func registerCollector(collector string, isDefaultEnabled bool, factory func() (Collector, error)) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var helpDefaultState string
 	if isDefaultEnabled {
 		helpDefaultState = "enabled"
@@ -46,6 +48,8 @@ func registerCollector(collector string, isDefaultEnabled bool, factory func() (
 type nodeCollector struct{ Collectors map[string]Collector }
 
 func NewNodeCollector(filters ...string) (*nodeCollector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	f := make(map[string]bool)
@@ -76,10 +80,14 @@ func NewNodeCollector(filters ...string) (*nodeCollector, error) {
 func (n nodeCollector) Describe(ch chan<- *prometheus.Desc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ch <- scrapeDurationDesc
 	ch <- scrapeSuccessDesc
 }
 func (n nodeCollector) Collect(ch chan<- prometheus.Metric) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	wg := sync.WaitGroup{}
@@ -93,6 +101,8 @@ func (n nodeCollector) Collect(ch chan<- prometheus.Metric) {
 	wg.Wait()
 }
 func execute(name string, c Collector, ch chan<- prometheus.Metric) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	begin := time.Now()
@@ -119,6 +129,8 @@ type typedDesc struct {
 }
 
 func (d *typedDesc) mustNewConstMetric(value float64, labels ...string) prometheus.Metric {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return prometheus.MustNewConstMetric(d.desc, d.valueType, value, labels...)

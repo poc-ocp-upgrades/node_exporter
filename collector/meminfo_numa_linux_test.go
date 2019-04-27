@@ -8,6 +8,8 @@ import (
 func TestMemInfoNuma(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open("fixtures/sys/devices/system/node/node0/meminfo")
 	if err != nil {
 		t.Fatal(err)
@@ -43,6 +45,8 @@ func TestMemInfoNuma(t *testing.T) {
 	}
 }
 func TestMemInfoNumaStat(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open("fixtures/sys/devices/system/node/node0/numastat")

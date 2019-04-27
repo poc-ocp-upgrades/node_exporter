@@ -24,15 +24,21 @@ type vmStatCollector struct{ fieldPattern *regexp.Regexp }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("vmstat", defaultEnabled, NewvmStatCollector)
 }
 func NewvmStatCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pattern := regexp.MustCompile(*vmStatFields)
 	return &vmStatCollector{fieldPattern: pattern}, nil
 }
 func (c *vmStatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath("vmstat"))

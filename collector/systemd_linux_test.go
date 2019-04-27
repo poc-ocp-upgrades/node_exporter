@@ -10,11 +10,15 @@ import (
 func getUnitListFixtures() [][]unit {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fixture1 := []unit{{UnitStatus: dbus.UnitStatus{Name: "foo", Description: "foo desc", LoadState: "loaded", ActiveState: "active", SubState: "running", Followed: "", Path: "/org/freedesktop/systemd1/unit/foo", JobId: 0, JobType: "", JobPath: "/"}}, {UnitStatus: dbus.UnitStatus{Name: "bar", Description: "bar desc", LoadState: "not-found", ActiveState: "inactive", SubState: "dead", Followed: "", Path: "/org/freedesktop/systemd1/unit/bar", JobId: 0, JobType: "", JobPath: "/"}}, {UnitStatus: dbus.UnitStatus{Name: "foobar", Description: "bar desc", LoadState: "not-found", ActiveState: "inactive", SubState: "dead", Followed: "", Path: "/org/freedesktop/systemd1/unit/bar", JobId: 0, JobType: "", JobPath: "/"}}, {UnitStatus: dbus.UnitStatus{Name: "baz", Description: "bar desc", LoadState: "not-found", ActiveState: "inactive", SubState: "dead", Followed: "", Path: "/org/freedesktop/systemd1/unit/bar", JobId: 0, JobType: "", JobPath: "/"}}}
 	fixture2 := []unit{}
 	return [][]unit{fixture1, fixture2}
 }
 func TestSystemdCollectorDoesntCrash(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, err := NewSystemdCollector()
@@ -37,6 +41,8 @@ func TestSystemdCollectorDoesntCrash(t *testing.T) {
 func TestSystemdIgnoreFilter(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fixtures := getUnitListFixtures()
 	whitelistPattern := regexp.MustCompile("^foo$")
 	blacklistPattern := regexp.MustCompile("^bar$")
@@ -48,6 +54,8 @@ func TestSystemdIgnoreFilter(t *testing.T) {
 	}
 }
 func TestSystemdIgnoreFilterDefaultKeepsAll(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, err := NewSystemdCollector()
@@ -64,6 +72,8 @@ func TestSystemdIgnoreFilterDefaultKeepsAll(t *testing.T) {
 func TestSystemdSummary(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fixtures := getUnitListFixtures()
 	summary := summarizeUnits(fixtures[0])
 	for _, state := range unitStatesName {
@@ -77,6 +87,8 @@ func TestSystemdSummary(t *testing.T) {
 	}
 }
 func testSummaryHelper(t *testing.T, state string, actual float64, expected float64) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if actual != expected {

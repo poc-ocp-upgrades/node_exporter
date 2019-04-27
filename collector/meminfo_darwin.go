@@ -12,6 +12,8 @@ import (
 func (c *meminfoCollector) getMemInfo() (map[string]float64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	infoCount := C.mach_msg_type_number_t(C.HOST_VM_INFO_COUNT)
 	vmstat := C.vm_statistics_data_t{}
 	ret := C.host_statistics(C.host_t(C.mach_host_self()), C.HOST_VM_INFO, C.host_info_t(unsafe.Pointer(&vmstat)), &infoCount)

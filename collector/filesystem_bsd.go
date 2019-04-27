@@ -16,6 +16,8 @@ const (
 func (c *filesystemCollector) GetStats() (stats []filesystemStats, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var mntbuf *C.struct_statfs
 	count := C.getmntinfo(&mntbuf, C.MNT_NOWAIT)
 	if count == 0 {

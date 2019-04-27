@@ -29,9 +29,13 @@ type infinibandMetric struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("infiniband", defaultEnabled, NewInfiniBandCollector)
 }
 func NewInfiniBandCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var i infinibandCollector
@@ -48,6 +52,8 @@ func NewInfiniBandCollector() (Collector, error) {
 	return &i, nil
 }
 func infinibandDevices(infinibandPath string) ([]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	devices, err := filepath.Glob(filepath.Join(infinibandPath, "/*"))
@@ -67,6 +73,8 @@ func infinibandDevices(infinibandPath string) ([]string, error) {
 func infinibandPorts(infinibandPath, device string) ([]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ports, err := filepath.Glob(filepath.Join(infinibandPath, device, "ports/*"))
 	if err != nil {
 		return nil, err
@@ -82,6 +90,8 @@ func infinibandPorts(infinibandPath, device string) ([]string, error) {
 	return ports, nil
 }
 func readMetric(directory, metricFile string) (uint64, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	metric, err := readUintFromFile(filepath.Join(directory, metricFile))
@@ -100,6 +110,8 @@ func readMetric(directory, metricFile string) (uint64, error) {
 	return metric, nil
 }
 func (c *infinibandCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	devices, err := infinibandDevices(sysFilePath(infinibandPath))

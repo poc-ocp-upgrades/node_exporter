@@ -8,10 +8,14 @@ import (
 func TestNetStats(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testNetStats(t, "fixtures/proc/net/netstat")
 	testSNMP6Stats(t, "fixtures/proc/net/snmp6")
 }
 func testNetStats(t *testing.T, fileName string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open(fileName)
@@ -31,6 +35,8 @@ func testNetStats(t *testing.T, fileName string) {
 	}
 }
 func testSNMP6Stats(t *testing.T, fileName string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open(fileName)

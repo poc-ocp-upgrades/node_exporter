@@ -35,9 +35,13 @@ var unitStatesName = []string{"active", "activating", "deactivating", "inactive"
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("systemd", defaultDisabled, NewSystemdCollector)
 }
 func NewSystemdCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const subsystem = "systemd"
@@ -55,6 +59,8 @@ func NewSystemdCollector() (Collector, error) {
 	return &systemdCollector{unitDesc: unitDesc, unitStartTimeDesc: unitStartTimeDesc, systemRunningDesc: systemRunningDesc, summaryDesc: summaryDesc, nRestartsDesc: nRestartsDesc, timerLastTriggerDesc: timerLastTriggerDesc, socketAcceptedConnectionsDesc: socketAcceptedConnectionsDesc, socketCurrentConnectionsDesc: socketCurrentConnectionsDesc, socketRefusedConnectionsDesc: socketRefusedConnectionsDesc, unitWhitelistPattern: unitWhitelistPattern, unitBlacklistPattern: unitBlacklistPattern}, nil
 }
 func (c *systemdCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	allUnits, err := c.getAllUnits()
@@ -78,6 +84,8 @@ func (c *systemdCollector) Update(ch chan<- prometheus.Metric) error {
 func (c *systemdCollector) collectUnitStatusMetrics(ch chan<- prometheus.Metric, units []unit) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, unit := range units {
 		for _, stateName := range unitStatesName {
 			isActive := 0.0
@@ -94,6 +102,8 @@ func (c *systemdCollector) collectUnitStatusMetrics(ch chan<- prometheus.Metric,
 func (c *systemdCollector) collectSockets(ch chan<- prometheus.Metric, units []unit) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, unit := range units {
 		if !strings.HasSuffix(unit.Name, ".socket") {
 			continue
@@ -108,11 +118,15 @@ func (c *systemdCollector) collectSockets(ch chan<- prometheus.Metric, units []u
 func (c *systemdCollector) collectUnitStartTimeMetrics(ch chan<- prometheus.Metric, units []unit) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, unit := range units {
 		ch <- prometheus.MustNewConstMetric(c.unitStartTimeDesc, prometheus.GaugeValue, float64(unit.startTimeUsec)/1e6, unit.Name)
 	}
 }
 func (c *systemdCollector) collectTimers(ch chan<- prometheus.Metric, units []unit) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, unit := range units {
@@ -125,11 +139,15 @@ func (c *systemdCollector) collectTimers(ch chan<- prometheus.Metric, units []un
 func (c *systemdCollector) collectSummaryMetrics(ch chan<- prometheus.Metric, summary map[string]float64) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for stateName, count := range summary {
 		ch <- prometheus.MustNewConstMetric(c.summaryDesc, prometheus.GaugeValue, count, stateName)
 	}
 }
 func (c *systemdCollector) collectSystemState(ch chan<- prometheus.Metric, systemState string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	isSystemRunning := 0.0
@@ -139,6 +157,8 @@ func (c *systemdCollector) collectSystemState(ch chan<- prometheus.Metric, syste
 	ch <- prometheus.MustNewConstMetric(c.systemRunningDesc, prometheus.GaugeValue, isSystemRunning)
 }
 func (c *systemdCollector) newDbus() (*dbus.Conn, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if *systemdPrivate {
@@ -158,6 +178,8 @@ type unit struct {
 }
 
 func (c *systemdCollector) getAllUnits() ([]unit, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conn, err := c.newDbus()
@@ -227,6 +249,8 @@ func (c *systemdCollector) getAllUnits() ([]unit, error) {
 func summarizeUnits(units []unit) map[string]float64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	summarized := make(map[string]float64)
 	for _, unitStateName := range unitStatesName {
 		summarized[unitStateName] = 0.0
@@ -237,6 +261,8 @@ func summarizeUnits(units []unit) map[string]float64 {
 	return summarized
 }
 func filterUnits(units []unit, whitelistPattern, blacklistPattern *regexp.Regexp) []unit {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	filtered := make([]unit, 0, len(units))
@@ -251,6 +277,8 @@ func filterUnits(units []unit, whitelistPattern, blacklistPattern *regexp.Regexp
 	return filtered
 }
 func (c *systemdCollector) getSystemState() (state string, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conn, err := c.newDbus()

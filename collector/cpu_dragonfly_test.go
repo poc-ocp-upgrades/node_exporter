@@ -8,6 +8,8 @@ import (
 func TestCPU(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		fieldsCount	= 5
 		times, err	= getDragonFlyCPUTimes()

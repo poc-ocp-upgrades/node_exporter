@@ -26,6 +26,8 @@ const (
 func (c *zfsCollector) openProcFile(path string) (*os.File, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath(path))
 	if err != nil {
 		log.Debugf("Cannot open %q for reading", procFilePath(path))
@@ -34,6 +36,8 @@ func (c *zfsCollector) openProcFile(path string) (*os.File, error) {
 	return file, nil
 }
 func (c *zfsCollector) updateZfsStats(subsystem string, ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := c.openProcFile(filepath.Join(c.linuxProcpathBase, c.linuxPathMap[subsystem]))
@@ -46,6 +50,8 @@ func (c *zfsCollector) updateZfsStats(subsystem string, ch chan<- prometheus.Met
 	})
 }
 func (c *zfsCollector) updatePoolStats(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	zpoolPaths, err := filepath.Glob(procFilePath(filepath.Join(c.linuxProcpathBase, c.linuxZpoolIoPath)))
@@ -74,6 +80,8 @@ func (c *zfsCollector) updatePoolStats(ch chan<- prometheus.Metric) error {
 func (c *zfsCollector) parseProcfsFile(reader io.Reader, fmtExt string, handler func(zfsSysctl, uint64)) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	scanner := bufio.NewScanner(reader)
 	parseLine := false
 	for scanner.Scan() {
@@ -100,6 +108,8 @@ func (c *zfsCollector) parseProcfsFile(reader io.Reader, fmtExt string, handler 
 	return scanner.Err()
 }
 func (c *zfsCollector) parsePoolProcfsFile(reader io.Reader, zpoolPath string, handler func(string, zfsSysctl, uint64)) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	scanner := bufio.NewScanner(reader)

@@ -7,6 +7,8 @@ import (
 func TestInfiniBandDevices(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	devices, err := infinibandDevices("fixtures/sys/class/infiniband")
 	if err != nil {
 		t.Fatal(err)
@@ -16,6 +18,8 @@ func TestInfiniBandDevices(t *testing.T) {
 	}
 }
 func TestInfiniBandPorts(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ports, err := infinibandPorts("fixtures/sys/class/infiniband", "mlx4_0")

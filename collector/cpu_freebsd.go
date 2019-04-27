@@ -28,6 +28,8 @@ type cputime struct {
 func getCPUTimes() ([]cputime, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	const states = 5
 	clockb, err := unix.SysctlRaw("kern.clockrate")
 	if err != nil {
@@ -70,14 +72,20 @@ type statCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("cpu", defaultEnabled, NewStatCollector)
 }
 func NewStatCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &statCollector{cpu: typedDesc{nodeCPUSecondsDesc, prometheus.CounterValue}, temp: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "temperature_celsius"), "CPU temperature", []string{"cpu"}, nil), prometheus.GaugeValue}}, nil
 }
 func (c *statCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cpuTimes, err := getCPUTimes()

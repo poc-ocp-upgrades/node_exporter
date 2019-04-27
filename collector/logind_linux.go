@@ -52,14 +52,20 @@ type logindSeatEntry struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("logind", defaultDisabled, NewLogindCollector)
 }
 func NewLogindCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &logindCollector{}, nil
 }
 func (lc *logindCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, err := newDbus()
@@ -70,6 +76,8 @@ func (lc *logindCollector) Update(ch chan<- prometheus.Metric) error {
 	return collectMetrics(ch, c)
 }
 func collectMetrics(ch chan<- prometheus.Metric, c logindInterface) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	seats, err := c.listSeats()
@@ -102,6 +110,8 @@ func collectMetrics(ch chan<- prometheus.Metric, c logindInterface) error {
 func knownStringOrOther(value string, known []string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for i := range known {
 		if value == known[i] {
 			return value
@@ -110,6 +120,8 @@ func knownStringOrOther(value string, known []string) string {
 	return "other"
 }
 func newDbus() (*logindDbus, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conn, err := dbus.SystemBusPrivate()
@@ -131,6 +143,8 @@ func newDbus() (*logindDbus, error) {
 	return &logindDbus{conn: conn, object: object}, nil
 }
 func (c *logindDbus) listSeats() ([]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var result [][]interface{}
@@ -161,6 +175,8 @@ func (c *logindDbus) listSeats() ([]string, error) {
 func (c *logindDbus) listSessions() ([]logindSessionEntry, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var result [][]interface{}
 	err := c.object.Call(dbusObject+".Manager.ListSessions", 0).Store(&result)
 	if err != nil {
@@ -182,6 +198,8 @@ func (c *logindDbus) listSessions() ([]logindSessionEntry, error) {
 	return sessions, nil
 }
 func (c *logindDbus) getSession(session logindSessionEntry) *logindSession {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	object := c.conn.Object(dbusObject, session.SessionObjectPath)

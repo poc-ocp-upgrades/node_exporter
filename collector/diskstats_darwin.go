@@ -19,9 +19,13 @@ type diskstatsCollector struct{ descs []typedDescFunc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("diskstats", defaultEnabled, NewDiskstatsCollector)
 }
 func NewDiskstatsCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var diskLabelNames = []string{"device"}
@@ -44,6 +48,8 @@ func NewDiskstatsCollector() (Collector, error) {
 	}}}}, nil
 }
 func (c *diskstatsCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	diskStats, err := iostat.ReadDriveStats()

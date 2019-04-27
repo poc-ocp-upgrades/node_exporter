@@ -11,6 +11,8 @@ import "C"
 func getNetDevStats(ignore *regexp.Regexp) (map[string]map[string]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	netDev := map[string]map[string]string{}
 	var ifap, ifa *C.struct_ifaddrs
 	if C.getifaddrs(&ifap) == -1 {
@@ -42,6 +44,8 @@ func getNetDevStats(ignore *regexp.Regexp) (map[string]map[string]string, error)
 	return netDev, nil
 }
 func convertFreeBSDCPUTime(counter uint64) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return strconv.FormatUint(counter, 10)

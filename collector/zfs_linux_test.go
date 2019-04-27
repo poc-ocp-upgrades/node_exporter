@@ -9,6 +9,8 @@ import (
 func TestArcstatsParsing(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	arcstatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/arcstats")
 	if err != nil {
 		t.Fatal(err)
@@ -36,6 +38,8 @@ func TestArcstatsParsing(t *testing.T) {
 	}
 }
 func TestZfetchstatsParsing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	zfetchstatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/zfetchstats")
@@ -67,6 +71,8 @@ func TestZfetchstatsParsing(t *testing.T) {
 func TestZilParsing(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	zilFile, err := os.Open("fixtures/proc/spl/kstat/zfs/zil")
 	if err != nil {
 		t.Fatal(err)
@@ -94,6 +100,8 @@ func TestZilParsing(t *testing.T) {
 	}
 }
 func TestVdevCacheStatsParsing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	vdevCacheStatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/vdev_cache_stats")
@@ -125,6 +133,8 @@ func TestVdevCacheStatsParsing(t *testing.T) {
 func TestXuioStatsParsing(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	xuioStatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/xuio_stats")
 	if err != nil {
 		t.Fatal(err)
@@ -152,6 +162,8 @@ func TestXuioStatsParsing(t *testing.T) {
 	}
 }
 func TestFmParsing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmFile, err := os.Open("fixtures/proc/spl/kstat/zfs/fm")
@@ -183,6 +195,8 @@ func TestFmParsing(t *testing.T) {
 func TestDmuTxParsing(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dmuTxFile, err := os.Open("fixtures/proc/spl/kstat/zfs/dmu_tx")
 	if err != nil {
 		t.Fatal(err)
@@ -210,6 +224,8 @@ func TestDmuTxParsing(t *testing.T) {
 	}
 }
 func TestZpoolParsing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	zpoolPaths, err := filepath.Glob("fixtures/proc/spl/kstat/zfs/*/io")
@@ -247,6 +263,8 @@ func TestZpoolParsing(t *testing.T) {
 func TestAbdstatsParsing(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	abdstatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/abdstats")
 	if err != nil {
 		t.Fatal(err)
@@ -274,6 +292,8 @@ func TestAbdstatsParsing(t *testing.T) {
 	}
 }
 func TestDbufstatsParsing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	dbufstatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/dbuf_stats")
@@ -305,6 +325,8 @@ func TestDbufstatsParsing(t *testing.T) {
 func TestDnodestatsParsing(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dnodestatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/dnodestats")
 	if err != nil {
 		t.Fatal(err)
@@ -332,6 +354,8 @@ func TestDnodestatsParsing(t *testing.T) {
 	}
 }
 func TestVdevMirrorstatsParsing(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	vdevMirrorStatsFile, err := os.Open("fixtures/proc/spl/kstat/zfs/vdev_mirror_stats")

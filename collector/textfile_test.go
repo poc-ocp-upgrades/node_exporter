@@ -17,9 +17,13 @@ type collectorAdapter struct{ Collector }
 func (a collectorAdapter) Describe(ch chan<- *prometheus.Desc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ch <- prometheus.NewDesc("dummy_metric", "Dummy metric.", nil, nil)
 }
 func (a collectorAdapter) Collect(ch chan<- prometheus.Metric) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	err := a.Update(ch)
@@ -28,6 +32,8 @@ func (a collectorAdapter) Collect(ch chan<- prometheus.Metric) {
 	}
 }
 func TestTextfileCollector(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tests := []struct {

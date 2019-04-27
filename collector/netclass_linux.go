@@ -21,15 +21,21 @@ type netClassCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("netclass", defaultEnabled, NewNetClassCollector)
 }
 func NewNetClassCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pattern := regexp.MustCompile(*netclassIgnoredDevices)
 	return &netClassCollector{subsystem: "network", ignoredDevicesPattern: pattern, metricDescs: map[string]*prometheus.Desc{}}, nil
 }
 func (c *netClassCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	netClass, err := getNetClassInfo(c.ignoredDevicesPattern)
@@ -101,10 +107,14 @@ func (c *netClassCollector) Update(ch chan<- prometheus.Metric) error {
 func pushMetric(ch chan<- prometheus.Metric, subsystem string, name string, value int64, ifaceName string, valueType prometheus.ValueType) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fieldDesc := prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, name), fmt.Sprintf("%s value of /sys/class/net/<iface>.", name), []string{"interface"}, nil)
 	ch <- prometheus.MustNewConstMetric(fieldDesc, valueType, float64(value), ifaceName)
 }
 func getNetClassInfo(ignore *regexp.Regexp) (sysfs.NetClass, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs, err := sysfs.NewFS(*sysPath)

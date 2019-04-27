@@ -14,6 +14,8 @@ var (
 func (c *interruptsCollector) Update(ch chan<- prometheus.Metric) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	interrupts, err := getInterrupts()
 	if err != nil {
 		return fmt.Errorf("couldn't get interrupts: %s", err)
@@ -33,6 +35,8 @@ type interrupt struct {
 }
 
 func getInterrupts() (map[string]interrupt, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

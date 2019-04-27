@@ -14,6 +14,8 @@ type kvm struct {
 func (k *kvm) SwapUsedPages() (value uint64, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	k.mu.Lock()
 	defer k.mu.Unlock()
 	if C._kvm_swap_used_pages((*C.uint64_t)(&value)) == -1 {

@@ -7,6 +7,8 @@ import (
 func TestMdadm(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	mdStates, err := parseMdstat("fixtures/proc/mdstat")
 	if err != nil {
 		t.Fatalf("parsing of reference-file failed entirely: %s", err)
@@ -22,6 +24,8 @@ func TestMdadm(t *testing.T) {
 	}
 }
 func TestInvalidMdstat(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, err := parseMdstat("fixtures/proc/mdstat_invalid")

@@ -7,6 +7,8 @@ import (
 func TestBonding(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	bondingStats, err := readBondingStats("fixtures/sys/class/net")
 	if err != nil {
 		t.Fatal(err)

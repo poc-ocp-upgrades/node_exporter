@@ -31,14 +31,20 @@ type tcpStatCollector struct{ desc typedDesc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("tcpstat", defaultDisabled, NewTCPStatCollector)
 }
 func NewTCPStatCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &tcpStatCollector{desc: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, "tcp", "connection_states"), "Number of connection states.", []string{"state"}, nil), prometheus.GaugeValue}}, nil
 }
 func (c *tcpStatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tcpStats, err := getTCPStats(procFilePath("net/tcp"))
@@ -63,6 +69,8 @@ func (c *tcpStatCollector) Update(ch chan<- prometheus.Metric) error {
 func getTCPStats(statsFile string) (map[tcpConnectionState]float64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(statsFile)
 	if err != nil {
 		return nil, err
@@ -71,6 +79,8 @@ func getTCPStats(statsFile string) (map[tcpConnectionState]float64, error) {
 	return parseTCPStats(file)
 }
 func parseTCPStats(r io.Reader) (map[tcpConnectionState]float64, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -94,6 +104,8 @@ func parseTCPStats(r io.Reader) (map[tcpConnectionState]float64, error) {
 	return tcpStats, scanner.Err()
 }
 func (st tcpConnectionState) String() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	switch st {

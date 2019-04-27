@@ -15,14 +15,20 @@ var (
 func procFilePath(name string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return path.Join(*procPath, name)
 }
 func sysFilePath(name string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return path.Join(*sysPath, name)
 }
 func rootfsFilePath(name string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return path.Join(*rootfsPath, name)

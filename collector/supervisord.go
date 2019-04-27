@@ -22,9 +22,13 @@ type supervisordCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("supervisord", defaultDisabled, NewSupervisordCollector)
 }
 func NewSupervisordCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -34,6 +38,8 @@ func NewSupervisordCollector() (Collector, error) {
 	return &supervisordCollector{upDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "up"), "Process Up", labelNames, nil), stateDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "state"), "Process State", labelNames, nil), exitStatusDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "exit_status"), "Process Exit Status", labelNames, nil), startTimeDesc: prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "start_time_seconds"), "Process start time", labelNames, nil)}, nil
 }
 func (c *supervisordCollector) isRunning(state int) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const (
@@ -53,6 +59,8 @@ func (c *supervisordCollector) isRunning(state int) bool {
 	return false
 }
 func (c *supervisordCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var info struct {

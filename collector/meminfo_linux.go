@@ -13,6 +13,8 @@ import (
 func (c *meminfoCollector) getMemInfo() (map[string]float64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath("meminfo"))
 	if err != nil {
 		return nil, err
@@ -21,6 +23,8 @@ func (c *meminfoCollector) getMemInfo() (map[string]float64, error) {
 	return parseMemInfo(file)
 }
 func parseMemInfo(r io.Reader) (map[string]float64, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

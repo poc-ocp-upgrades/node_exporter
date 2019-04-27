@@ -30,9 +30,13 @@ type filesystemStats struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("filesystem", defaultEnabled, NewFilesystemCollector)
 }
 func NewFilesystemCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	subsystem := "filesystem"
@@ -48,6 +52,8 @@ func NewFilesystemCollector() (Collector, error) {
 	return &filesystemCollector{ignoredMountPointsPattern: mountPointPattern, ignoredFSTypesPattern: filesystemsTypesPattern, sizeDesc: sizeDesc, freeDesc: freeDesc, availDesc: availDesc, filesDesc: filesDesc, filesFreeDesc: filesFreeDesc, roDesc: roDesc, deviceErrorDesc: deviceErrorDesc}, nil
 }
 func (c *filesystemCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	stats, err := c.GetStats()

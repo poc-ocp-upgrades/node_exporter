@@ -5,6 +5,8 @@ import "testing"
 func TestFileFDStats(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fileFDStats, err := parseFileFDStats("fixtures/proc/sys/fs/file-nr")
 	if err != nil {
 		t.Fatal(err)

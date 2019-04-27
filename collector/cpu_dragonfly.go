@@ -15,14 +15,20 @@ type statCollector struct{ cpu *prometheus.Desc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("cpu", defaultEnabled, NewStatCollector)
 }
 func NewStatCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &statCollector{cpu: nodeCPUSecondsDesc}, nil
 }
 func getDragonFlyCPUTimes() ([]float64, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -42,6 +48,8 @@ func getDragonFlyCPUTimes() ([]float64, error) {
 	return cpuTimes, nil
 }
 func (c *statCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var fieldsCount = 5

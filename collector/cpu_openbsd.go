@@ -13,14 +13,20 @@ type cpuCollector struct{ cpu typedDesc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("cpu", defaultEnabled, NewCpuCollector)
 }
 func NewCpuCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &cpuCollector{cpu: typedDesc{nodeCPUSecondsDesc, prometheus.CounterValue}}, nil
 }
 func (c *cpuCollector) Update(ch chan<- prometheus.Metric) (err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clockb, err := unix.SysctlRaw("kern.clockrate")

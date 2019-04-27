@@ -9,6 +9,8 @@ import (
 func TestNetDevStats(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open("fixtures/proc/net/dev")
 	if err != nil {
 		t.Fatal(err)

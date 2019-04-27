@@ -21,15 +21,21 @@ type netDevCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("netdev", defaultEnabled, NewNetDevCollector)
 }
 func NewNetDevCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	pattern := regexp.MustCompile(*netdevIgnoredDevices)
 	return &netDevCollector{subsystem: "network", ignoredDevicesPattern: pattern, metricDescs: map[string]*prometheus.Desc{}}, nil
 }
 func (c *netDevCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	netDev, err := getNetDevStats(c.ignoredDevicesPattern)

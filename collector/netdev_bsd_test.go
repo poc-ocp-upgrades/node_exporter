@@ -12,6 +12,8 @@ var uinttostringtests = []uintToStringTest{{0, "0"}, {1, "1"}, {12345678, "12345
 func TestUintToString(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, test := range uinttostringtests {
 		is := convertFreeBSDCPUTime(test.in)
 		if is != test.out {

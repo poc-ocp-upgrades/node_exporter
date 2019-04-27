@@ -9,10 +9,14 @@ import (
 func TestSockStats(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testSockStats(t, "fixtures/proc/net/sockstat")
 	testSockStats(t, "fixtures/proc/net/sockstat_rhe4")
 }
 func testSockStats(t *testing.T, fixture string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open(fixture)

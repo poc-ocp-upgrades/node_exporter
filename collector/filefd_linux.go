@@ -18,14 +18,20 @@ type fileFDStatCollector struct{}
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector(fileFDStatSubsystem, defaultEnabled, NewFileFDStatCollector)
 }
 func NewFileFDStatCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &fileFDStatCollector{}, nil
 }
 func (c *fileFDStatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fileFDStat, err := parseFileFDStats(procFilePath("sys/fs/file-nr"))
@@ -42,6 +48,8 @@ func (c *fileFDStatCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func parseFileFDStats(filename string) (map[string]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	file, err := os.Open(filename)

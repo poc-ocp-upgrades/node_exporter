@@ -26,14 +26,20 @@ type devstatCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("devstat", defaultDisabled, NewDevstatCollector)
 }
 func NewDevstatCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &devstatCollector{devinfo: &C.struct_devinfo{}, bytes: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "bytes_total"), "The total number of bytes in transactions.", []string{"device", "type"}, nil), prometheus.CounterValue}, transfers: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "transfers_total"), "The total number of transactions.", []string{"device", "type"}, nil), prometheus.CounterValue}, duration: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "duration_seconds_total"), "The total duration of transactions in seconds.", []string{"device", "type"}, nil), prometheus.CounterValue}, busyTime: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "busy_time_seconds_total"), "Total time the device had one or more transactions outstanding in seconds.", []string{"device"}, nil), prometheus.CounterValue}, blocks: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, devstatSubsystem, "blocks_transferred_total"), "The total number of blocks transferred.", []string{"device"}, nil), prometheus.CounterValue}}, nil
 }
 func (c *devstatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c.mu.Lock()

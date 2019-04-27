@@ -15,14 +15,20 @@ type bondingCollector struct{ slaves, active typedDesc }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("bonding", defaultEnabled, NewBondingCollector)
 }
 func NewBondingCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &bondingCollector{slaves: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, "bonding", "slaves"), "Number of configured slaves per bonding interface.", []string{"master"}, nil), prometheus.GaugeValue}, active: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, "bonding", "active"), "Number of active slaves per bonding interface.", []string{"master"}, nil), prometheus.GaugeValue}}, nil
 }
 func (c *bondingCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	statusfile := sysFilePath("class/net")
@@ -41,6 +47,8 @@ func (c *bondingCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func readBondingStats(root string) (status map[string][2]int, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	status = map[string][2]int{}

@@ -19,9 +19,13 @@ type memoryCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("meminfo", defaultEnabled, NewMemoryCollector)
 }
 func NewMemoryCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tmp32, err := unix.SysctlUint32("vm.stats.vm.v_page_size")
@@ -35,6 +39,8 @@ func NewMemoryCollector() (Collector, error) {
 	return &memoryCollector{pageSize: uint64(tmp32), sysctls: []bsdSysctl{{name: "active_bytes", description: "Recently used by userland", mib: "vm.stats.vm.v_active_count", conversion: fromPage}, {name: "inactive_bytes", description: "Not recently used by userland", mib: "vm.stats.vm.v_inactive_count", conversion: fromPage}, {name: "wired_bytes", description: "Locked in memory by kernel, mlock, etc", mib: "vm.stats.vm.v_wire_count", conversion: fromPage}, {name: "cache_bytes", description: "Almost free, backed by swap or files, available for re-allocation", mib: "vm.stats.vm.v_cache_count", conversion: fromPage}, {name: "buffer_bytes", description: "Disk IO Cache entries for non ZFS filesystems, only usable by kernel", mib: "vfs.bufspace", dataType: bsdSysctlTypeCLong}, {name: "free_bytes", description: "Unallocated, available for allocation", mib: "vm.stats.vm.v_free_count", conversion: fromPage}, {name: "size_bytes", description: "Total physical memory size", mib: "vm.stats.vm.v_page_count", conversion: fromPage}, {name: "swap_size_bytes", description: "Total swap memory size", mib: "vm.swap_total", dataType: bsdSysctlTypeUint64}, {name: "swap_in_bytes_total", description: "Bytes paged in from swap devices", mib: "vm.stats.vm.v_swappgsin", valueType: prometheus.CounterValue, conversion: fromPage}, {name: "swap_out_bytes_total", description: "Bytes paged out to swap devices", mib: "vm.stats.vm.v_swappgsout", valueType: prometheus.CounterValue, conversion: fromPage}}}, nil
 }
 func (c *memoryCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, m := range c.sysctls {

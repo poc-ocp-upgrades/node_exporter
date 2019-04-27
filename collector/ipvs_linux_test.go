@@ -15,6 +15,8 @@ import (
 func TestIPVSCollector(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, err := kingpin.CommandLine.Parse([]string{"--path.procfs", "fixtures/proc"}); err != nil {
 		t.Fatal(err)
 	}
@@ -41,14 +43,20 @@ type miniCollector struct{ c Collector }
 func (c miniCollector) Collect(ch chan<- prometheus.Metric) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.c.Update(ch)
 }
 func (c miniCollector) Describe(ch chan<- *prometheus.Desc) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	prometheus.NewGauge(prometheus.GaugeOpts{Namespace: "fake", Subsystem: "fake", Name: "fake", Help: "fake"}).Describe(ch)
 }
 func TestIPVSCollectorResponse(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if _, err := kingpin.CommandLine.Parse([]string{"--path.procfs", "fixtures/proc"}); err != nil {

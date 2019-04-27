@@ -18,15 +18,21 @@ type timexCollector struct{ offset, freq, maxerror, esterror, status, constant, 
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("timex", defaultEnabled, NewTimexCollector)
 }
 func NewTimexCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const subsystem = "timex"
 	return &timexCollector{offset: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "offset_seconds"), "Time offset in between local system and reference clock.", nil, nil), prometheus.GaugeValue}, freq: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "frequency_adjustment_ratio"), "Local clock frequency adjustment.", nil, nil), prometheus.GaugeValue}, maxerror: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "maxerror_seconds"), "Maximum error in seconds.", nil, nil), prometheus.GaugeValue}, esterror: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "estimated_error_seconds"), "Estimated error in seconds.", nil, nil), prometheus.GaugeValue}, status: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "status"), "Value of the status array bits.", nil, nil), prometheus.GaugeValue}, constant: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "loop_time_constant"), "Phase-locked loop time constant.", nil, nil), prometheus.GaugeValue}, tick: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "tick_seconds"), "Seconds between clock ticks.", nil, nil), prometheus.GaugeValue}, ppsfreq: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_frequency_hertz"), "Pulse per second frequency.", nil, nil), prometheus.GaugeValue}, jitter: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_jitter_seconds"), "Pulse per second jitter.", nil, nil), prometheus.GaugeValue}, shift: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_shift_seconds"), "Pulse per second interval duration.", nil, nil), prometheus.GaugeValue}, stabil: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_stability_hertz"), "Pulse per second stability, average of recent frequency changes.", nil, nil), prometheus.GaugeValue}, jitcnt: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_jitter_total"), "Pulse per second count of jitter limit exceeded events.", nil, nil), prometheus.CounterValue}, calcnt: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_calibration_total"), "Pulse per second count of calibration intervals.", nil, nil), prometheus.CounterValue}, errcnt: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_error_total"), "Pulse per second count of calibration errors.", nil, nil), prometheus.CounterValue}, stbcnt: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "pps_stability_exceeded_total"), "Pulse per second count of stability limit exceeded events.", nil, nil), prometheus.CounterValue}, tai: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "tai_offset_seconds"), "International Atomic Time (TAI) offset.", nil, nil), prometheus.GaugeValue}, syncStatus: typedDesc{prometheus.NewDesc(prometheus.BuildFQName(namespace, subsystem, "sync_status"), "Is clock synchronized to a reliable server (1 = yes, 0 = no).", nil, nil), prometheus.GaugeValue}}, nil
 }
 func (c *timexCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var syncStatus float64

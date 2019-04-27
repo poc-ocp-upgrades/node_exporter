@@ -16,14 +16,20 @@ type meminfoCollector struct{}
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("meminfo", defaultEnabled, NewMeminfoCollector)
 }
 func NewMeminfoCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &meminfoCollector{}, nil
 }
 func (c *meminfoCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var metricType prometheus.ValueType

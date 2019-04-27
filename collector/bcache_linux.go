@@ -10,12 +10,16 @@ import (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("bcache", defaultEnabled, NewBcacheCollector)
 }
 
 type bcacheCollector struct{ fs sysfs.FS }
 
 func NewBcacheCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs, err := sysfs.NewFS(*sysPath)
@@ -25,6 +29,8 @@ func NewBcacheCollector() (Collector, error) {
 	return &bcacheCollector{fs: fs}, nil
 }
 func (c *bcacheCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	stats, err := c.fs.BcacheStats()
@@ -49,11 +55,15 @@ type bcacheMetric struct {
 func bcachePeriodStatsToMetric(ps *bcache.PeriodStats, labelValue string) []bcacheMetric {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	label := []string{"backing_device"}
 	metrics := []bcacheMetric{{name: "bypassed_bytes_total", desc: "Amount of IO (both reads and writes) that has bypassed the cache.", value: float64(ps.Bypassed), metricType: prometheus.CounterValue, extraLabel: label, extraLabelValue: labelValue}, {name: "cache_hits_total", desc: "Hits counted per individual IO as bcache sees them.", value: float64(ps.CacheHits), metricType: prometheus.CounterValue, extraLabel: label, extraLabelValue: labelValue}, {name: "cache_misses_total", desc: "Misses counted per individual IO as bcache sees them.", value: float64(ps.CacheMisses), metricType: prometheus.CounterValue, extraLabel: label, extraLabelValue: labelValue}, {name: "cache_bypass_hits_total", desc: "Hits for IO intended to skip the cache.", value: float64(ps.CacheBypassHits), metricType: prometheus.CounterValue, extraLabel: label, extraLabelValue: labelValue}, {name: "cache_bypass_misses_total", desc: "Misses for IO intended to skip the cache.", value: float64(ps.CacheBypassMisses), metricType: prometheus.CounterValue, extraLabel: label, extraLabelValue: labelValue}, {name: "cache_miss_collisions_total", desc: "Instances where data insertion from cache miss raced with write (data already present).", value: float64(ps.CacheMissCollisions), metricType: prometheus.CounterValue, extraLabel: label, extraLabelValue: labelValue}, {name: "cache_readaheads_total", desc: "Count of times readahead occurred.", value: float64(ps.CacheReadaheads), metricType: prometheus.CounterValue, extraLabel: label, extraLabelValue: labelValue}}
 	return metrics
 }
 func (c *bcacheCollector) updateBcacheStats(ch chan<- prometheus.Metric, s *bcache.Stats) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const (

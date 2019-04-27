@@ -23,14 +23,20 @@ type cpuCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("cpu", defaultEnabled, NewCPUCollector)
 }
 func NewCPUCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &cpuCollector{cpu: nodeCPUSecondsDesc, cpuGuest: prometheus.NewDesc(prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "guest_seconds_total"), "Seconds the cpus spent in guests (VMs) for each mode.", []string{"cpu", "mode"}, nil), cpuFreq: prometheus.NewDesc(prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_hertz"), "Current cpu thread frequency in hertz.", []string{"cpu"}, nil), cpuFreqMin: prometheus.NewDesc(prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_min_hertz"), "Minimum cpu thread frequency in hertz.", []string{"cpu"}, nil), cpuFreqMax: prometheus.NewDesc(prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "frequency_max_hertz"), "Maximum cpu thread frequency in hertz.", []string{"cpu"}, nil), cpuCoreThrottle: prometheus.NewDesc(prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "core_throttles_total"), "Number of times this cpu core has been throttled.", []string{"package", "core"}, nil), cpuPackageThrottle: prometheus.NewDesc(prometheus.BuildFQName(namespace, cpuCollectorSubsystem, "package_throttles_total"), "Number of times this cpu package has been throttled.", []string{"package"}, nil)}, nil
 }
 func (c *cpuCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := c.updateStat(ch); err != nil {
@@ -45,6 +51,8 @@ func (c *cpuCollector) Update(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func (c *cpuCollector) updateCPUfreq(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs, err := sysfs.NewFS(*sysPath)
@@ -63,6 +71,8 @@ func (c *cpuCollector) updateCPUfreq(ch chan<- prometheus.Metric) error {
 	return nil
 }
 func (c *cpuCollector) updateThermalThrottle(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cpus, err := filepath.Glob(sysFilePath("devices/system/cpu/cpu[0-9]*"))
@@ -111,6 +121,8 @@ func (c *cpuCollector) updateThermalThrottle(ch chan<- prometheus.Metric) error 
 	return nil
 }
 func (c *cpuCollector) updateStat(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fs, err := procfs.NewFS(*procPath)

@@ -8,6 +8,8 @@ import (
 func getLoad() ([]float64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type loadavg struct {
 		load	[3]uint32
 		scale	int

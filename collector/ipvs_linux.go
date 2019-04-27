@@ -19,14 +19,20 @@ type ipvsCollector struct {
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("ipvs", defaultEnabled, NewIPVSCollector)
 }
 func NewIPVSCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return newIPVSCollector()
 }
 func newIPVSCollector() (*ipvsCollector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -50,6 +56,8 @@ func newIPVSCollector() (*ipvsCollector, error) {
 	return &c, nil
 }
 func (c *ipvsCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ipvsStats, err := c.fs.NewIPVSStats()

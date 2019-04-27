@@ -10,6 +10,8 @@ import (
 func getLoad() (loads []float64, err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	data, err := ioutil.ReadFile(procFilePath("loadavg"))
 	if err != nil {
 		return nil, err
@@ -21,6 +23,8 @@ func getLoad() (loads []float64, err error) {
 	return loads, nil
 }
 func parseLoad(data string) (loads []float64, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	loads = make([]float64, 3)

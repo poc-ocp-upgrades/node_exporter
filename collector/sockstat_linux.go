@@ -21,14 +21,20 @@ type sockStatCollector struct{}
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector(sockStatSubsystem, defaultEnabled, NewSockStatCollector)
 }
 func NewSockStatCollector() (Collector, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &sockStatCollector{}, nil
 }
 func (c *sockStatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sockStats, err := getSockStats(procFilePath("net/sockstat"))
@@ -49,6 +55,8 @@ func (c *sockStatCollector) Update(ch chan<- prometheus.Metric) error {
 func getSockStats(fileName string) (map[string]map[string]string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(fileName)
 	if err != nil {
 		return nil, err
@@ -57,6 +65,8 @@ func getSockStats(fileName string) (map[string]map[string]string, error) {
 	return parseSockStats(file, fileName)
 }
 func parseSockStats(r io.Reader, fileName string) (map[string]map[string]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
