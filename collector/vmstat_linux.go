@@ -1,18 +1,3 @@
-// Copyright 2016 The Prometheus Authors
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-// +build !novmstat
-
 package collector
 
 import (
@@ -22,7 +7,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-
 	"github.com/prometheus/client_golang/prometheus"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
@@ -35,29 +19,27 @@ var (
 	vmStatFields = kingpin.Flag("collector.vmstat.fields", "Regexp of fields to return for vmstat collector.").Default("^(oom_kill|pgpg|pswp|pg.*fault).*").String()
 )
 
-type vmStatCollector struct {
-	fieldPattern *regexp.Regexp
-}
+type vmStatCollector struct{ fieldPattern *regexp.Regexp }
 
 func init() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	registerCollector("vmstat", defaultEnabled, NewvmStatCollector)
 }
-
-// NewvmStatCollector returns a new Collector exposing vmstat stats.
 func NewvmStatCollector() (Collector, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pattern := regexp.MustCompile(*vmStatFields)
-	return &vmStatCollector{
-		fieldPattern: pattern,
-	}, nil
+	return &vmStatCollector{fieldPattern: pattern}, nil
 }
-
 func (c *vmStatCollector) Update(ch chan<- prometheus.Metric) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	file, err := os.Open(procFilePath("vmstat"))
 	if err != nil {
 		return err
 	}
 	defer file.Close()
-
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		parts := strings.Fields(scanner.Text())
@@ -68,15 +50,7 @@ func (c *vmStatCollector) Update(ch chan<- prometheus.Metric) error {
 		if !c.fieldPattern.MatchString(parts[0]) {
 			continue
 		}
-
-		ch <- prometheus.MustNewConstMetric(
-			prometheus.NewDesc(
-				prometheus.BuildFQName(namespace, vmStatSubsystem, parts[0]),
-				fmt.Sprintf("/proc/vmstat information field %s.", parts[0]),
-				nil, nil),
-			prometheus.UntypedValue,
-			value,
-		)
+		ch <- prometheus.MustNewConstMetric(prometheus.NewDesc(prometheus.BuildFQName(namespace, vmStatSubsystem, parts[0]), fmt.Sprintf("/proc/vmstat information field %s.", parts[0]), nil, nil), prometheus.UntypedValue, value)
 	}
 	return scanner.Err()
 }
